@@ -3,7 +3,7 @@ const router = express()
 
 
 router.use("/api/users", require("./UserRoutes"))
-
+router.use("/api/form", require("./FormRoutes"))
 
 
 router.get("/", (req, res) => {

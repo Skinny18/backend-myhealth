@@ -17,7 +17,7 @@ const generateToken = (id) => {
 const registerForm = async(req, res) => {
 
     
-    const { name, email, password} = req.body
+    const { name, email, cidade} = req.body
 
     //check if user exists
     const user = await User.findOne({email})
@@ -32,24 +32,21 @@ const registerForm = async(req, res) => {
     const passwordHash = await bcrypt.hash(password, salt)
 
     //Create user
-    const newUser = await User.create({
+    const newForm = await Form.create({
         name,
         email,
-        password: passwordHash
+        userId: user._id,
+        cidade, 
     })
 
     // if user was created successfully, return the token
 
-    if(!newUser){
+    if(!newForm){
         res.status.json({errors: ["Houve um erro, por favor tente mais tarde."]})
         return
     }
-    //token user
-    res.status(201).json({
-        _id:newUser._id,
-        token:generateToken(newUser._id)
-    })
-
+    
+    res.status(201).json(newForm);
 
 }
 //Get user by Id
@@ -75,4 +72,5 @@ const getUserById = async(req, res) => {
 module.exports = {
     registerForm,    
     getUserById,
+    generateToken
 }
