@@ -1,4 +1,4 @@
-const {validationResult} = require("express-validator")
+const { validationResult} = require("express-validator")
 
 const validate = (req, res, next) => {
     const errors = validationResult(req)
@@ -14,6 +14,7 @@ const validate = (req, res, next) => {
     return res.status(422).json({
         errors: extractedErros
     })
+
 }
 
 module.exports = validate
