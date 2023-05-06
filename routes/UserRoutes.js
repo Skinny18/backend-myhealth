@@ -5,6 +5,7 @@ const {register, login, getCurrentUser, update, getUserById} = require("../contr
 const authGuard = require("../middlewares/authGuard")
 //Middlewares
 
+
 const validate = require("../middlewares/handleValidation")
 const { userCreateValidation, loginValidation, userUpdateValidation } = require("../middlewares/userValidations")
 
